@@ -18,6 +18,7 @@ class LiteNetStressTest(unittest.TestCase):
     """More Info in https://docs.google.com/spreadsheets/d/1VjdBDZ3Qmm6zs8UrFY1mYQexCsCKjzhmi0hsfc1sm8w/edit#gid=1305515037 """
 
     def setUp(self):
+        sleep(50)
         files = [f for f in os.listdir('.') if os.path.isfile(f)]
         for f in files:
             if f[0:17]=='app-Litenet-debug':
