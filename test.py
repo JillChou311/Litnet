@@ -49,7 +49,6 @@ class LiteNetStressTest(unittest.TestCase):
         
         #Lincall
         desired_caps = {}
-        desired_caps['app'] = PATH('Linphone_3.2.6_0b8e1087.apk')
         desired_caps['appPackage'] = 'org.linphone'
         desired_caps['appActivity'] = 'org.linphone.LinphoneLauncherActivity'
         desired_caps['platformName'] = 'Android'
