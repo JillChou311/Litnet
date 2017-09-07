@@ -121,7 +121,10 @@ class LoginPage(BasePage):
         textfields = self.driver.find_elements(*LoginPageLocators.ACCOUNT_INFO_TEXTFIELD)
         press = 10 
         while press > 0:
-            self.driver.tap([(399,728)],100)
+#            #nexus battary
+#            self.driver.tap([(399,728)],100)
+#            #asus broke
+            self.driver.tap([(356,1086)],100)                        
             print 'press time:'+str(press)
             press = press - 1
 
@@ -360,10 +363,15 @@ class CallingPage(BasePage):
             self.driver.get_screenshot_as_file("screen"+timestr2+".png")
             print "vedio pic record on"+"screen"+timestr2+".png"
             return False
+
+    def allow_sound(self):
+        Allow = self.driver.find_element(*CallingPageLocators.ALLOW_BUTTON)
+        Allow.click()              
     
     def answer_call(self):
         Send = self.driver.find_element(*CallingPageLocators.RECEIVER_BUTTON)
         Send.click()
+        
 
     def check_calling(self):
         try:

@@ -16,7 +16,7 @@ class WelcomePageLocators(object):
 class LoginPageLocators(object):
     ACCOUNT_INFO_TEXTFIELD = (By.CLASS_NAME,"android.widget.EditText")
     SIGNIN_BUTTON = (By.ID, package_name+':id/btn_login')
-    REGIST_BUTTON = (By.ID, package_name+':id/ll_register')
+    REGIST_BUTTON = (By.ID, package_name+':id/ll_register')
     LITENET_LOGO =(By.ID, 'com.gemteks.litenet:id/litenetimageView')
     LOG_RECORD = (By.ID, 'com.gemteks.litenet:id/fw_text')
 
@@ -85,6 +85,7 @@ class SecurityPageLocators(object):
      
 
 class CallingPageLocators(object):
+    ALLOW_BUTTON = (By.ID,'com.android.packageinstaller:id/permission_allow_button')
     RECEIVER_BUTTON = (By.ID, 'com.gemteks.litenet:id/accept')
     CURRENT_CONTACT = (By.ID,'com.gemteks.litenet:id/current_contact_name')
     HANGUP_BUTTON = (By.ID, 'com.gemteks.litenet:id/hang_up')

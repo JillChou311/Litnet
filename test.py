@@ -24,16 +24,27 @@ class LiteNetStressTest(unittest.TestCase):
             if f[0:17]=='app-Litenet-debug':
                 apkname = f
         #LiteNet
+##        desired_caps = {}
+##        desired_caps['app'] = PATH(apkname)
+##        desired_caps['appPackage'] = 'com.gemteks.litenet'
+##        desired_caps['appActivity'] = 'com.joymaster.mycasa.activity.MainActivity'
+##        desired_caps['platformName'] = 'Android'
+##        desired_caps['platformVersion'] = '4.4.3'
+##        desired_caps['deviceName'] = '015d321ff553f615'
+##        desired_caps['udid'] = '015d321ff553f615'
+##        self.driver = webdriver.Remote('http://localhost:4727/wd/hub', desired_caps)
+##        self.driver.implicitly_wait(35)
+
         desired_caps = {}
         desired_caps['app'] = PATH(apkname)
         desired_caps['appPackage'] = 'com.gemteks.litenet'
         desired_caps['appActivity'] = 'com.joymaster.mycasa.activity.MainActivity'
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '4.4.3'
-        desired_caps['deviceName'] = '015d321ff553f615'
-        desired_caps['udid'] = '015d321ff553f615'
+        desired_caps['platformVersion'] = '6.0.1'
+        desired_caps['deviceName'] = 'F8AZCY230515'
+        desired_caps['udid'] = 'F8AZCY230515'
         self.driver = webdriver.Remote('http://localhost:4727/wd/hub', desired_caps)
-        self.driver.implicitly_wait(35)
+        self.driver.implicitly_wait(35)       
 
         
         #Lincall
@@ -77,6 +88,9 @@ class LiteNetStressTest(unittest.TestCase):
         while times > 0:
             lincall_number_page.call_out()
             #LiteNet Receive call
+
+            if times == 500:
+                calling_page.allow_sound()
 
             assert calling_page.check_ring_page(), 'no ringing appear'            
             calling_page.answer_call() 
