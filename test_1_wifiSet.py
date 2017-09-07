@@ -30,10 +30,7 @@ class wifi_test(unittest.TestCase):
         ssid_elem.click()
     #initialize
     def setUp(self):
-        sleep(2)
-
-   #     sleep(50)
-
+        sleep(50)
 
     #Cleaning up
     def tearDown(self):
