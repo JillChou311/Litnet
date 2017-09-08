@@ -30,7 +30,7 @@ class wifi_test(unittest.TestCase):
         ssid_elem.click()
     #initialize
     def setUp(self):
-        sleep(50)
+        sleep(2)
 
     #Cleaning up
     def tearDown(self):
@@ -41,6 +41,8 @@ class wifi_test(unittest.TestCase):
     def test_1_wifiSet(self):
         os.system('adb -s F8AZCY230515 shell am start -n io.appium.settings/.Settings -e wifi on')
         os.system('adb -s E9AZCY15Z724 shell am start -n io.appium.settings/.Settings -e wifi on')
+
+        sleep(50)
 
         desired_caps = {
             'platformName': 'Android',
