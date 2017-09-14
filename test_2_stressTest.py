@@ -113,16 +113,19 @@ class LiteNetStressTest(unittest.TestCase):
 
         
 if __name__== '__main__' :
-    suite = unittest.TestSuite()
-    suite.addTest(LiteNetStressTest("test_repeat_call"))
-    timestr = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
-    filename = "result.html"
-    print (filename)
-    fp = open(filename, 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(
-                stream=fp,
-                title='test result',
-                description='test result'
-                )
-    runner.run(suite)
-    fp.close() 
+    suite = unittest.TestLoader().loadTestsFromTestCase(LiteNetStressTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+    # suite = unittest.TestSuite()
+    # suite.addTest(LiteNetStressTest("test_repeat_call"))
+    # timestr = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+    # filename = "result.html"
+    # print (filename)
+    # fp = open(filename, 'wb')
+    # runner = HTMLTestRunner.HTMLTestRunner(
+    #             stream=fp,
+    #             title='test result',
+    #             description='test result'
+    #             )
+    # runner.run(suite)
+    # fp.close()
+
