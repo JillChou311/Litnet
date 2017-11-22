@@ -84,7 +84,8 @@ class LiteNetStressTest(unittest.TestCase):
 
             calling_page.hangup()
             assert security_page.check_security_logo_appear(), 'Litenet hangup problem'
-            # lincall hangup
+
+            sleep(5)
 
             time1 = 500 - times + 1
             timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
