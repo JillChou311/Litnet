@@ -41,7 +41,7 @@ class wifi_test(unittest.TestCase):
     def test_1_wifiSet(self):
         os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi on')
 
-       # sleep(50)
+        sleep(50)
 
         desired_caps = {
             'platformName': 'Android',
