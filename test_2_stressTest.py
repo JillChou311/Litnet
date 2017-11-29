@@ -57,7 +57,7 @@ class LiteNetStressTest(unittest.TestCase):
 
         # LiteNet login
         welcome_page.click_x_button()
-        login_page.send_account_info('jonathan_lin@gemteks.com', 'gemtektest123')
+        login_page.send_account_info('kelly_chiang@gemteks.com', 'gemtek123')
 
         ser = serial.Serial("/dev/tty.usbserial", 9600, timeout=1)
         if (ser.isOpen() == False):
