@@ -30,46 +30,47 @@ class wifi_test(unittest.TestCase):
         ssid_elem.click()
     #initialize
     def setUp(self):
-        sleep(2)
+        sleep(50)
 
     #Cleaning up
     def tearDown(self):
         sleep(2)
-        self.driver.quit()
+        # self.driver.quit()
     
     #Test script
     def test_1_wifiSet(self):
-        os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi on')
-
-        sleep(50)
-
-        desired_caps = {
-            'platformName': 'Android',
-            'platformVersion': '4.4.2',
-            'deviceName': 'EAAZCY17E701',
-            'appPackage': 'com.android.settings',
-            'appActivity': 'Settings'
-        }
-
-        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-
-        elem = self.driver.find_elements_by_id("android:id/title")
-        for e in elem:
-            if e.text == u"Wi‑Fi":
-                e.click()
-                sleep(2)
-                break
-
-        self._ScanSSID("MyVITA_A79F",'android:id/title',1000,200)
-
-        elem = self.driver.find_elements_by_class_name("android.widget.Button")
-        for e in elem:
-            if e.text == u'完成':
-                e.click()
-                break
-            elif e.text == u'連線':
-                e.click()
-                break
+        os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi off')
+        # os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi on')
+        #
+        # sleep(50)
+        #
+        # desired_caps = {
+        #     'platformName': 'Android',
+        #     'platformVersion': '4.4.2',
+        #     'deviceName': 'EAAZCY17E701',
+        #     'appPackage': 'com.android.settings',
+        #     'appActivity': 'Settings'
+        # }
+        #
+        # self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        #
+        # elem = self.driver.find_elements_by_id("android:id/title")
+        # for e in elem:
+        #     if e.text == u"Wi‑Fi":
+        #         e.click()
+        #         sleep(2)
+        #         break
+        #
+        # self._ScanSSID("MyVITA_A79F",'android:id/title',1000,200)
+        #
+        # elem = self.driver.find_elements_by_class_name("android.widget.Button")
+        # for e in elem:
+        #     if e.text == u'完成':
+        #         e.click()
+        #         break
+        #     elif e.text == u'連線':
+        #         e.click()
+        #         break
 
     # def test_2_wifiSet(self):
     #
