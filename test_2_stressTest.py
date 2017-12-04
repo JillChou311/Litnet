@@ -72,6 +72,8 @@ class LiteNetStressTest(unittest.TestCase):
             print 'open'
         else:
             print 'close'
+            timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+            print "The time of click ring is:" + str(timestr)
 
         times = 500
         while times > 0:
@@ -89,7 +91,7 @@ class LiteNetStressTest(unittest.TestCase):
 
             time1 = 500 - times + 1
             timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-            print "\n no. " + str(time1) + " call , time :" + str(timestr)
+            print "\n no. " + str(time1) + " call pass, time :" + str(timestr)
             times = times - 1
 
             ser.open()
@@ -107,6 +109,9 @@ class LiteNetStressTest(unittest.TestCase):
                 print 'oh no'
             else:
                 print 'close'
+                timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+                print "The time of click ring is:" + str(timestr)
+
 
 
 
