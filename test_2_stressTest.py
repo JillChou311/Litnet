@@ -58,6 +58,7 @@ class LiteNetStressTest(unittest.TestCase):
         # LiteNet login
         welcome_page.click_x_button()
         login_page.send_account_info('kelly_chiang@gemteks.com', 'gemtek123')
+        assert security_page.check_security_logo_appear(), 'security logo not appear.'
 
         ser = serial.Serial("/dev/tty.usbserial", 9600, timeout=1)
         if (ser.isOpen() == False):
@@ -87,12 +88,11 @@ class LiteNetStressTest(unittest.TestCase):
             calling_page.hangup()
             assert security_page.check_security_logo_appear(), 'Litenet hangup problem'
 
-            sleep(15)
-
             time1 = 500 - times + 1
             timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
             print "\n no. " + str(time1) + " call pass, time :" + str(timestr)
             times = times - 1
+            sleep(15)
 
             ser.open()
             if ser.is_open:
