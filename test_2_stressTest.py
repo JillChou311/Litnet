@@ -19,6 +19,9 @@ class LiteNetStressTest(unittest.TestCase):
     """More Info in https://docs.google.com/spreadsheets/d/1VjdBDZ3Qmm6zs8UrFY1mYQexCsCKjzhmi0hsfc1sm8w/edit#gid=1305515037 """
 
     def setUp(self):
+        os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi off')
+        sleep(50)
+
         files = [f for f in os.listdir('.') if os.path.isfile(f)]
         for f in files:
             if f[0:17]=='app-Litenet-debug':
@@ -174,19 +177,19 @@ class LiteNetStressTest(unittest.TestCase):
 
         
 if __name__== '__main__' :
-    suite = unittest.TestLoader().loadTestsFromTestCase(LiteNetStressTest)
-    unittest.TextTestRunner(verbosity=2).run(suite)
-    # suite = unittest.TestSuite()
-    # suite.addTest(LiteNetStressTest("test_repeat_call"))
-    # timestr = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
-    # filename = "result.html"
-    # print (filename)
-    # fp = open(filename, 'wb')
-    # runner = HTMLTestRunner.HTMLTestRunner(
-    #             stream=fp,
-    #             title='test result',
-    #             description='test result'
-    #             )
-    # runner.run(suite)
-    # fp.close()
+    # suite = unittest.TestLoader().loadTestsFromTestCase(LiteNetStressTest)
+    # unittest.TextTestRunner(verbosity=2).run(suite)
+    suite = unittest.TestSuite()
+    suite.addTest(LiteNetStressTest("test_ring_call"))
+    timestr = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+    filename = "result.html"
+    print (filename)
+    fp = open(filename, 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+                stream=fp,
+                title='test result',
+                description='test result'
+                )
+    runner.run(suite)
+    fp.close()
 
