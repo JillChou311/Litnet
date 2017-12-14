@@ -172,7 +172,7 @@ class LiteNetStressTest(unittest.TestCase):
                
 
     def tearDown(self):
-        self.LinDriver.quit()
+        #self.LinDriver.quit()
         self.driver.quit()
 
         
