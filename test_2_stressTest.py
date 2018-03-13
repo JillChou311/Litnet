@@ -1,6 +1,7 @@
 #coding=utf-8
 import os
-import serial
+#import serial
+import telnetlib
 import unittest,HTMLTestRunner,time
 
 from selenium import webdriver
@@ -19,9 +20,8 @@ class LiteNetStressTest(unittest.TestCase):
     """More Info in https://docs.google.com/spreadsheets/d/1VjdBDZ3Qmm6zs8UrFY1mYQexCsCKjzhmi0hsfc1sm8w/edit#gid=1305515037 """
 
     def setUp(self):
-        os.system('adb -s EAAZCY17E701 shell am start -n io.appium.settings/.Settings -e wifi off')
-        sleep(50)
-
+        os.system('adb -s EAAZCY17F178 shell am start -n io.appium.settings/.Settings -e wifi off')
+        sleep(10)
         files = [f for f in os.listdir('.') if os.path.isfile(f)]
         for f in files:
             if f[0:17]=='app-Litenet-debug':
@@ -35,8 +35,8 @@ class LiteNetStressTest(unittest.TestCase):
         desired_caps['appActivity'] = 'com.joymaster.mycasa.activity.MainActivity'
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '4.4.2'
-        desired_caps['deviceName'] = 'EAAZCY17E701'
-        desired_caps['udid'] = 'EAAZCY17E701'
+        desired_caps['deviceName'] = 'EAAZCY17F178'
+        desired_caps['udid'] = 'EAAZCY17F178'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         self.driver.implicitly_wait(35)
 
@@ -63,21 +63,37 @@ class LiteNetStressTest(unittest.TestCase):
         login_page.send_account_info('kelly_chiang@gemteks.com', 'gemtek123')
         assert security_page.check_security_logo_appear(), 'security logo not appear.'
 
-        ser = serial.Serial("/dev/tty.usbserial", 9600, timeout=1)
-        if (ser.isOpen() == False):
-            ser.open()
-        ser.read()
-        ser.write("A")
-        sleep(1)
-        ser.write("a")
-        sleep(1)
-        ser.close()
-        if ser.is_open:
-            print 'open'
-        else:
-            print 'close'
-            timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-            print "The time of click ring is:" + str(timestr)
+        Host = '10.5.182.210'
+
+        tn = telnetlib.Telnet(Host, port=4005, timeout=10)
+        tn.set_debuglevel(2)
+        sleep(2)
+        tn.write("A")
+        sleep(2)
+        tn.write("a")
+        sleep(2)
+        tn.close()
+        timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        print "The time of click ring is:" + str(timestr)
+
+        #
+        # ser = serial.Serial("/dev/tty.usbserial", 9600, timeout=1)
+        # if (ser.isOpen() == False):
+        #     ser.open()
+        # ser.read()
+        # ser.write("A")
+        # sleep(1)
+        # ser.write("a")
+        # sleep(1)
+        # ser.close()
+        #
+        #
+        # if ser.is_open:
+        #     print 'open'
+        # else:
+        #     print 'close'
+        #     timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        #     print "The time of click ring is:" + str(timestr)
 
         times = 500
         while times > 0:
@@ -97,23 +113,35 @@ class LiteNetStressTest(unittest.TestCase):
             times = times - 1
             sleep(15)
 
-            ser.open()
-            if ser.is_open:
-                print 'open'
-            else:
-                print 'close'
-            ser.read()
-            ser.write("A")
-            sleep(1)
-            ser.write("a")
-            sleep(1)
-            ser.close()
-            if ser.is_open:
-                print 'oh no'
-            else:
-                print 'close'
-                timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-                print "The time of click ring is:" + str(timestr)
+            tn = telnetlib.Telnet(Host, port=4005, timeout=10)
+            tn.set_debuglevel(2)
+            sleep(2)
+            tn.write("A")
+            sleep(2)
+            tn.write("a")
+            sleep(2)
+            tn.close()
+            timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+            print "The time of click ring is:" + str(timestr)
+
+
+            # ser.open()
+            # if ser.is_open:
+            #     print 'open'
+            # else:
+            #     print 'close'
+            # ser.read()
+            # ser.write("A")
+            # sleep(1)
+            # ser.write("a")
+            # sleep(1)
+            # ser.close()
+            # if ser.is_open:
+            #     print 'oh no'
+            # else:
+            #     print 'close'
+            #     timestr = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+            #     print "The time of click ring is:" + str(timestr)
 
 
 
